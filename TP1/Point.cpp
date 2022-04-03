@@ -4,72 +4,72 @@
 #include "point.h"
 using namespace std;
 
-point::point()
+Point::Point()
 {
 	_x = _y = 0;
 	_color = 15;
 }
-point::point(int x, int y)
+Point::Point(int x, int y)
 {
 	setX(x);
 	setY(y);
 	_color = 15;
 }
-point::~point()
+Point::~Point()
 {
 	_color = 0;
 	_x = _y = 0;
 }
-point::point(const point& p)
+Point::Point(const Point& p)
 {
 	_x = p._x;
 	_y = p._y;
 	_color = p._color;
 }
-void point::setX(int x)
+void Point::setX(int x)
 {
 	assert(x >= 0);
 	_x = x;
 }
-void point::setY(int y)
+void Point::setY(int y)
 {
 	assert(y >= 0);
 	_y = y;
 }
-void point::setColor(int color)
+void Point::setColor(int color)
 {
 	assert(color >= 1 && color <= 15);
 	_color = color;
 }
-void point::setPosition(int x, int y)
+void Point::setPosition(int x, int y)
 {
 	setX(x);
 	setY(y);
 	setColor(15);
 }
-int point::getX() const
+int Point::getX() const
 {
 	return _x;
 }
-int point::getY() const
+int Point::getY() const
 {
 	return _y;
 }
-int point::getColor() const
+int Point::getColor() const
 {
 	return _color;
 }
-void point::read(istream& input)
+void Point::read(istream& input)
 {
 	char symbole;
 	viderBuffer();
 	input >> symbole >> _x >> symbole >> _y >> symbole;
 }
-void point::print(ostream& output) const
+void Point::print(ostream& output) const
 {
 	output << "(" << _x << "," << _y << ")";
 }
-void point::draw(ostream& output) const
+void Point::draw(ostream& output) const
 {
 	output << "\xFE";
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _color);
@@ -84,44 +84,44 @@ void gotoxy(int xpos, int ypos)
 	scrn.Y = ypos;
 	SetConsoleCursorPosition(hOuput, scrn);
 }
-const point& point::operator=(const point& p)
+const Point& Point::operator=(const Point& p)
 {
 	_x = p._x;
 	_y = p._y;
 	_color = p._color;
 	return *this;
 }
-bool point::operator==(const point& p) const
+bool Point::operator==(const Point& p) const
 {
 	if (_x == p._x && _y == p._y)
 		return true;
 	else
 		return false;
 }
-bool point::operator!=(const point& p) const
+bool Point::operator!=(const Point& p) const
 {
 	if (_x != p._x && _y != p._y)
 		return true;
 	else
 		return false;
 }
-point point::operator+(const point& p)
+Point Point::operator+(const Point& p)
 {
 	_x = _y + p._x;
 	_y = _y + p._y;
 	return *this;
 }
-point point::operator-(const point& p)
+Point Point::operator-(const Point& p)
 {
 	_x = _x - p._x;
 	_y = _y - p._y;
 	return *this;
 }
-istream& operator>>(istream& input, point& p) {
+istream& operator>>(istream& input, Point& p) {
 	p.read(input);
 	return input;
 }
-ostream& operator<<(ostream& output, point& p)
+ostream& operator<<(ostream& output, Point& p)
 {
 	p.print(output);
 	return output;

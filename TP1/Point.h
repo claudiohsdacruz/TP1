@@ -1,18 +1,18 @@
 #pragma once
 
-class point
+class Point
 {
 private:
 	int _x, _y;
 	int _color;
 public:
 	//Constructeur
-	point();
-	point(int x, int y);
+	Point();
+	Point(int x, int y);
 	//Destructeur
-	~point();
+	~Point();
 	//Constructeur de copie
-	point(const point& p);
+	Point(const Point& p);
 	//Setteur
 	void setX(int x);
 	void setY(int y);
@@ -27,13 +27,13 @@ public:
 	void print(std::ostream& output) const;
 	void draw(std::ostream& output) const;
 	//Opérateur de surchage
-	const point& operator=(const point& p);
-	bool operator==(const point& p) const;
-	bool operator!=(const point& p) const;
-	point operator+(const point& p);
-	point operator-(const point& p);
+	const Point& operator=(const Point& p);
+	bool operator==(const Point& p) const;
+	bool operator!=(const Point& p) const;
+	Point operator+(const Point& p);
+	Point operator-(const Point& p);
 };
 void viderBuffer();
 void gotoxy(int xpos, int ypos);
-std::istream& operator>>(std::istream& input, point& p);
-std::ostream& operator<<(std::ostream& output, point& p);
+std::istream& operator>>(std::istream& input, Point& p);
+std::ostream& operator<<(std::ostream& output, Point& p);
