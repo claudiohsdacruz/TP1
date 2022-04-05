@@ -26,8 +26,10 @@ Snake::~Snake()
 
 void Snake::initialize(int x, int y)
 {
-	_snake[0] = Point(x, y);
-	_size = 6;
+	for (int i = 0; i < _size; i++)
+	{
+		_snake[i] = Point(x - i, y);
+	}
 }
 
 const Point& Snake::getHeadPosition() const
@@ -56,7 +58,25 @@ int Snake::getSize() const
 
 Point Snake::newPosition(int dir) const
 {
-	return Point();
+	Point newPoint;
+	switch (dir)
+	{
+	case 1:
+		newPoint.setX(_snake[0].getX() - 1);
+		break;
+	case 2:
+		newPoint.setX(_snake[0].getX() + 1);
+		break;
+	case 3:
+		newPoint.setY(_snake[0].getY() - 1);
+		break;
+	case 4:
+		newPoint.setY(_snake[0].getY() + 1);
+		break;
+	default:
+		break;
+	}
+	return newPoint;
 }
 
 bool Snake::ifCollision(const Point& pos) const
@@ -66,10 +86,13 @@ bool Snake::ifCollision(const Point& pos) const
 
 void Snake::move(int dir)
 {
-	for (int i = 0; i < _size; i++)
+	Point newHead = newPosition(dir);
+	for (int i = _size - 1; i >= 0; i--)
 	{
-
+		_snake[i + 1] = _snake[i];
 	}
+	_snake[0] = newHead;
+	_snake[_size - 1].setColor(0);
 }
 
 void Snake::eat(int dir)
@@ -88,7 +111,7 @@ void Snake::draw(std::ostream& sortie) const
 {
 	for (int i = 0; i < _size; i++)
 	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _snake[0].getColor());
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _snake[i].getColor());
 		gotoxy(_snake[i].getX(), _snake[i].getY());
 		_snake[i].draw(sortie);
 	}

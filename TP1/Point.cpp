@@ -38,7 +38,7 @@ void Point::setY(int y)
 }
 void Point::setColor(int color)
 {
-	assert(color >= 1 && color <= 15);
+	assert(color >= 0 && color <= 15);
 	_color = color;
 }
 void Point::setPosition(int x, int y)

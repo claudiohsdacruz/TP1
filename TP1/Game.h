@@ -14,7 +14,6 @@
 #include "point.h"
 #include "rectangle.h"
 
-/*
 class Game {
 private:
 	bool _lose;				//si on perd
@@ -52,4 +51,3 @@ public:
 	void printEndGame(std::ostream& sortie) const;//affiche game over et le score
 
 };
-*/

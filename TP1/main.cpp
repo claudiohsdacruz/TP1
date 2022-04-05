@@ -43,8 +43,17 @@ void main() {
 	*/
 
 	Apple a(10,3);
+	Snake s;
+
+	s.initialize(10, 5);
 
 	a.draw(cout);
-
+	cout << s;
 	system("pause>0");
+	s.move(1);
+	cout << s;
+	system("pause>0");
+	
+
+	system("pause");
 }
