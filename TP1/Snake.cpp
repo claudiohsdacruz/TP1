@@ -81,30 +81,33 @@ Point Snake::newPosition(int dir) const
 
 bool Snake::ifCollision(const Point& pos) const
 {
-	return false;
+	bool collision = false;
+	for (int i = 0; i < _size -1; i++)
+	{
+		if (pos == _snake[i])
+		{
+			collision = true;
+		}
+	}
+	return collision;
 }
 
 void Snake::move(int dir)
 {
 	Point newHead = newPosition(dir);
+	
 	for (int i = _size - 1; i >= 0; i--)
 	{
-		_snake[i + 1] = _snake[i];
+		_snake[i - 1] = _snake[i];
 	}
 	_snake[0] = newHead;
-	_snake[_size - 1].setColor(0);
+	_snake[_size-1].setColor(0);
 }
 
 void Snake::eat(int dir)
 {
-	Apple apple;
-	if (_snake[0].getX() == apple.getPosition().getX() && _snake[0].getY() == apple.getPosition().getY())
-	{
-		if (_size <= 15)
-		{
-			_size += 1;
-		}
-	}
+	move(dir);
+	_size++;
 }
 
 void Snake::draw(std::ostream& sortie) const

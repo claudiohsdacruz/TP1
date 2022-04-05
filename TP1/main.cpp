@@ -50,7 +50,7 @@ void main() {
 	a.draw(cout);
 	cout << s;
 	system("pause>0");
-	s.move(1);
+	s.move(2);
 	cout << s;
 	system("pause>0");
 	
