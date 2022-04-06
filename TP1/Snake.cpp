@@ -63,14 +63,18 @@ Point Snake::newPosition(int dir) const
 	{
 	case 1:
 		newPoint.setX(_snake[0].getX() - 1);
+		newPoint.setY(_snake[0].getY());
 		break;
 	case 2:
 		newPoint.setX(_snake[0].getX() + 1);
+		newPoint.setY(_snake[0].getY());
 		break;
 	case 3:
+		newPoint.setX(_snake[0].getX());
 		newPoint.setY(_snake[0].getY() - 1);
 		break;
 	case 4:
+		newPoint.setX(_snake[0].getX());
 		newPoint.setY(_snake[0].getY() + 1);
 		break;
 	default:

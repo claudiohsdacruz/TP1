@@ -52,8 +52,7 @@ void main() {
 	system("pause>0");
 	s.move(2);
 	cout << s;
-	system("pause>0");
 	
 
-	system("pause");
+	system("pause>0");
 }
