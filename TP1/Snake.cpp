@@ -111,7 +111,11 @@ void Snake::move(int dir)
 void Snake::eat(int dir)
 {
 	move(dir);
-	_size++;
+	if (_size <=15)
+	{
+		_size++;
+	}
+	
 }
 
 void Snake::draw(std::ostream& sortie) const
