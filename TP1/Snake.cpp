@@ -5,10 +5,11 @@
 #include "snake.h"
 #include "apple.h"
 
+using namespace std;
 
 Snake::Snake()
 {
-	_snake[0] = Point(0, 0);
+	_snake[0] = Point(20, 10);
 	_size = 6;
 }
 
@@ -86,9 +87,9 @@ Point Snake::newPosition(int dir) const
 bool Snake::ifCollision(const Point& pos) const
 {
 	bool collision = false;
-	for (int i = 0; i < _size -1; i++)
+	for (int i = 1; i < _size; i++)
 	{
-		if (pos == _snake[i])
+		if (pos.getX() == _snake[i].getX() && pos.getY() == _snake[i].getY())
 		{
 			collision = true;
 		}
@@ -98,24 +99,26 @@ bool Snake::ifCollision(const Point& pos) const
 
 void Snake::move(int dir)
 {
-	Point newHead = newPosition(dir);
-	
-	for (int i = _size - 1; i >= 0; i--)
-	{
-		_snake[i - 1] = _snake[i];
+	_snake[_size].setColor(0);
+	_snake[_size].draw(cout);
+	Point newHead = newPosition(dir);	
+	for (int i = _size -1; i >= 0 ; i--)
+	{	
+		_snake[i] = _snake[i - 1]; 
 	}
+	_snake[_size -1].setColor(0);
 	_snake[0] = newHead;
-	_snake[_size-1].setColor(0);
+	
 }
 
 void Snake::eat(int dir)
 {
 	move(dir);
-	if (_size <=15)
+	if (_size <=25)
 	{
 		_size++;
 	}
-	
+
 }
 
 void Snake::draw(std::ostream& sortie) const
@@ -125,6 +128,15 @@ void Snake::draw(std::ostream& sortie) const
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _snake[i].getColor());
 		gotoxy(_snake[i].getX(), _snake[i].getY());
 		_snake[i].draw(sortie);
+	}
+}
+
+void Snake::deleteSnake()
+{
+	for (int i = 0; i < _size; i++)
+	{
+		_snake[i].setColor(0);
+		_snake[i].draw(cout);
 	}
 }
 

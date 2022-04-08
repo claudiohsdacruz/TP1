@@ -13,8 +13,15 @@ Apple::Apple()
 
 Apple::Apple(int x, int y)
 {
-	_apple.setPosition(x, y);
+	//_apple.setPosition(x, y);
+	_apple = Point(x, y);
 	_apple.setColor(4);
+}
+
+Apple::~Apple()
+{
+	_apple = Point();
+	_apple.setColor(0);
 }
 
 void Apple::setPosition(int x, int y)
@@ -22,14 +29,20 @@ void Apple::setPosition(int x, int y)
 	_apple.setX(x);
 	_apple.setY(y);
 }
-
+const Point& Apple::getPoint() const
+{
+	return _apple;
+}
+/*
 const Point& Apple::getPosition() const
 {
-	Point p;
-	p.setPosition(_apple.getX(), _apple.getY());
-	return p;
+	//Point pos;
+	Point pos(_apple.getX(), _apple.getY());
+	//pos.setX(_apple.getX());
+	//pos.setY(_apple.getY());
+	return pos;
 }
-
+*/
 void Apple::draw(std::ostream& sortie) const
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _apple.getColor());

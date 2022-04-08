@@ -22,6 +22,8 @@ private:
 		_cptLive,			//le compteur de vie
 		_score;				//le score de la game
 
+	int _speed;		//vitesse du serpent
+
 	Snake _snake;				//le snake
 	Apple _apple;				//la pomme
 
@@ -44,10 +46,11 @@ public:
 	bool canMove(const Point& p) const;//retourne vrai si la tête du snake peut bouger
 
 	int getScore() const;		//retourne le score (seule info qui pourrait être intéressante
-	//de l’extérieur) et aucun setteur pour cet objet.
-
+								//de l’extérieur) et aucun setteur pour cet objet.
+	void endGame();
 	void printScore(std::ostream& sortie) const;	//affiche le score
 	void printLive(std::ostream& sortie) const;	//affiche le compteur de vie
 	void printEndGame(std::ostream& sortie) const;//affiche game over et le score
-
+	void printSnake(std::ostream& sortie) const; //affiche le serpent
+	
 };
