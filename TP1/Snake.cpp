@@ -14,24 +14,28 @@
 
 using namespace std;
 
+// Constructeur sans parâmetres
 Snake::Snake()
 {
 	_snake[0] = Point(20, 10);
 	_size = 6;
 }
 
+// Constructeur avec les parâmetres de position
 Snake::Snake(int x, int y)
 {
 	_snake[0] = Point(x, y);
 	_size = 6;
 }
 
+// Destructeur
 Snake::~Snake()
 {
 	_snake[0] = Point(0, 0);
 	_size = 0;
 }
 
+// Initialise une serpent
 void Snake::initialize(int x, int y)
 {
 	for (int i = 0; i < _size; i++)
@@ -40,16 +44,19 @@ void Snake::initialize(int x, int y)
 	}
 }
 
+// Retourne la position de la tête du serpent
 const Point& Snake::getHeadPosition() const
 {
 	return _snake[0];
 }
 
+// Retourne la position d'une partie du serpent à partir de l'indice
 const Point& Snake::getPosition(int ind) const
 {
 	return _snake[ind];
 }
 
+// Define l'operateur de position pour le serpent '[]'
 const Point& Snake::operator[](int ind) const
 {
 	Point p;
@@ -59,11 +66,13 @@ const Point& Snake::operator[](int ind) const
 	return p;
 }
 
+// Retourne la taille du serpent
 int Snake::getSize() const
 {
 	return _size;
 }
 
+// Retoune la nouvelle position da tête du serpent à partir de la direction
 Point Snake::newPosition(int dir) const
 {
 	Point newPoint;
@@ -91,6 +100,7 @@ Point Snake::newPosition(int dir) const
 	return newPoint;
 }
 
+// Verifie si le serpent entre en collision avec lui même
 bool Snake::ifCollision(const Point& pos) const
 {
 	bool collision = false;
@@ -104,10 +114,9 @@ bool Snake::ifCollision(const Point& pos) const
 	return collision;
 }
 
+// Faire le serpent bouger
 void Snake::move(int dir)
 {
-	_snake[_size].setColor(0);
-	_snake[_size].draw(cout);
 	Point newHead = newPosition(dir);	
 	for (int i = _size -1; i >= 0 ; i--)
 	{	
@@ -118,6 +127,7 @@ void Snake::move(int dir)
 	
 }
 
+// Faire le serpent manger une pomme
 void Snake::eat(int dir)
 {
 	move(dir);
@@ -128,9 +138,10 @@ void Snake::eat(int dir)
 
 }
 
+// Affiche le serpent sur le tableau du jeu
 void Snake::draw(std::ostream& sortie) const
 {
-	for (int i = 0; i < _size; i++)
+	for (int i = 0; i < _size + 1; i++)
 	{
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _snake[i].getColor());
 		gotoxy(_snake[i].getX(), _snake[i].getY());
@@ -138,6 +149,7 @@ void Snake::draw(std::ostream& sortie) const
 	}
 }
 
+// Efface une serpent
 void Snake::deleteSnake()
 {
 	for (int i = 0; i < _size; i++)
@@ -147,6 +159,7 @@ void Snake::deleteSnake()
 	}
 }
 
+// Define l'operateur de sortie '<<'
 std::ostream& operator<<(std::ostream& sortie, const Snake& s)
 {
 	s.draw(sortie);

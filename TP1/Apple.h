@@ -17,7 +17,7 @@ public:
 	Apple(int x, int y);					//initialise la position reçue
 	~Apple();
 	void setPosition(int x, int y);			//initialise la pomme à la position reçue
-	const Point& getPoint() const;	 	//retourne la position de la pomme
+	const Point& getPoint() const;	 		//retourne la position de la pomme
 	void draw(std::ostream& sortie) const;	//draw la pomme rouge
 };
 

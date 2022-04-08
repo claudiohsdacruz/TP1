@@ -18,6 +18,7 @@
 
 using namespace std;
 
+// Constructeur sans parâmetres
 Game::Game()
 {
 	_lose = false;
@@ -30,6 +31,7 @@ Game::Game()
 	_plateau = Retangle();
 }
 
+// Destructeur
 Game::~Game()
 {
 	_lose = false;
@@ -41,6 +43,7 @@ Game::~Game()
 	_plateau.~Retangle();
 }
 
+// Intialise le jeu ave les paramètres de base
 void Game::initialize()
 {
 	_lose = false;
@@ -58,6 +61,7 @@ void Game::initialize()
 	this->printLive(cout);
 }
 
+// Génére une position aleatoire sur le tableau du jeu
 Point Game::randPosition() const
 {
 	int x, y;
@@ -66,6 +70,7 @@ Point Game::randPosition() const
 	return Point(x,y);
 }
 
+// Génére et affiche une pomme sur le tableau
 void Game::createApple()
 {
 	Point a = randPosition();
@@ -73,31 +78,36 @@ void Game::createApple()
 	_apple.draw(std::cout);
 }
 
+// Faire functioner la mécanique du jeu
 void Game::play()
 {
-	srand(time(NULL));
+	srand(time(NULL)); 
 	this->initialize(); //Initialise la Game(initialise le booléen, les vies, le score, le Snake et la première pomme)
 
 	while (!_lose)
 	{
+		
+		Point p = _snake.getHeadPosition(); //Prend la position de la tete du serpent
+		Point a = _apple.getPoint(); //Prend la position de la pomme
+		
 		this->printScore(cout); //Affiche le score
-	
-		this->inputKey(); //Saisit la touche
+		do
+		{
+			this->inputKey(); //Saisit la touche
+		} while (!this->canMove(p));
+		
 		if (_dir != 0)
 		{
-			Point p = _snake.getHeadPosition(); //Prend la position de la tete du serpent
-			Point a = _apple.getPoint(); //Prend la position de la pomme
-
 			cout << _snake; //Initialise la prochaine position du Snake selon la direction
 	
 			if (_snake.ifCollision(p) || _snake.getHeadPosition().getX() == 39 || _snake.getHeadPosition().getX() == 0 || 
 				_snake.getHeadPosition().getY() == 19 || _snake.getHeadPosition().getY() == 0) 
 			{
-				_snake.deleteSnake();
-				_cptLive--; //Diminue le nb de vie
-				_snake.initialize(20, 10);
-				_plateau.draw(cout);
-				_dir = 2;
+				_snake.deleteSnake();	//Efface le serpent
+				_cptLive--;				//Diminue le nb de vie
+				_snake.initialize(20, 10); //Inicialize une nouvelle serpent
+				_plateau.draw(cout);	//Affiche le plateau du jeu
+				_dir = 2;				//Initialise une direction
 				this->printLive(cout); //Affiche le nb de vie
 				if (_cptLive == 0)
 				{
@@ -129,9 +139,10 @@ void Game::play()
 		}
 	}
 
-	this->printEndGame(cout);
+	this->printEndGame(cout); //Affiche la message de fin du jeu
 }
 
+// Saisit les touches et change la direction et le bool _gameOver si on touche q
 void Game::inputKey() {
 	int touche;
 	if (_kbhit()) {			//si une touche est enfoncée
@@ -160,6 +171,7 @@ void Game::inputKey() {
 	}
 }
 
+// Verifie si le serpent peut bouger
 bool Game::canMove(const Point& p) const
 {
 	bool move = true;
@@ -171,16 +183,19 @@ bool Game::canMove(const Point& p) const
 	return move;
 }
 
+// Retourne le score
 int Game::getScore() const
 {
 	return _score;
 }
 
+// Finalise le jeu
 void Game::endGame()
 {
 	_lose = true;
 }
 
+// Affiche le score
 void Game::printScore(std::ostream& sortie) const
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -188,6 +203,7 @@ void Game::printScore(std::ostream& sortie) const
 	sortie << "Score : " << _score;
 }
 
+// Affiche la quantité de vie
 void Game::printLive(std::ostream& sortie) const
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -195,6 +211,7 @@ void Game::printLive(std::ostream& sortie) const
 	sortie << "Live : " << _cptLive;
 }
 
+// Affiche la fin du jeu
 void Game::printEndGame(std::ostream& sortie) const
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -202,6 +219,7 @@ void Game::printEndGame(std::ostream& sortie) const
 	sortie << "GAME OVER!";
 }
 
+// affiche une serpent
 void Game::printSnake(std::ostream& sortie) const
 {
 	sortie << _snake;
