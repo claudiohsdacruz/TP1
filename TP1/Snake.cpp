@@ -1,3 +1,10 @@
+/************************************************************************************
+* Auteur	: Claudio Cruz et Ramin	Amiri											*
+* Nom		: snake.cpp																*
+* Date		: 08 avril 2022															*
+* Description : Implementation des constucteurs et méthodes de la classe Snake		*
+************************************************************************************/
+
 #include <iostream>
 #include <cassert>
 #include <Windows.h>

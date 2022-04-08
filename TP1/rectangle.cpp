@@ -1,3 +1,10 @@
+/************************************************************************************
+* Auteur	: Claudio Cruz et Ramin	Amiri											*
+* Nom		: rectangle.cpp															*
+* Date		: 08 avril 2022															*
+* Description : Implementation des constucteurs et méthodes de la classe Rectangle	*
+************************************************************************************/
+
 #include <iostream>
 #include <assert.h>
 #include <Windows.h>

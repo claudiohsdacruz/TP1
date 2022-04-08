@@ -1,3 +1,10 @@
+/****************************************************************************************
+* Auteur	: Claudio Cruz et Ramin Amiri					 							*
+* Nom		: rectangle.h																*
+* Date		: 08 avril 2022																*
+* Description	: L'objet Rectangle utilisé pour la construction du tableau de jeu  	*
+****************************************************************************************/
+
 #pragma once
 
 #include "point.h"

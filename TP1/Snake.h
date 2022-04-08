@@ -1,9 +1,9 @@
 /****************************************************************************************
 * Auteur	: Claudio Cruz et Ramin Amiri					 							*
 * Nom		: snake.h																	*
-* Date		: 03 avril 2022																*
+* Date		: 08 avril 2022																*
 * Description	: L'objet snake implémenté avec un tableau primitif de point et une		*
-*               taille pouvant se déplacer pour être intégré dans le jeu snake    		*
+*               taille pouvant se déplacer pour être intégré dans le jeu Snake    		*
 ****************************************************************************************/
 #pragma once
 # include "point.h"

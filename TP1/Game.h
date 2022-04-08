@@ -1,7 +1,7 @@
 /************************************************************************************
 * Auteur	: Claudio Cruz et Ramin	Amiri											*
 * Nom		: game.h																*
-* Date		: 03 avril 2022															*
+* Date		: 08 avril 2022															*
 * Description : La classe Game implémente Le jeu Snake en console où les flèches 	*
 *		  servent  à déplacer le snake dans l’écran pour manger les pommes,			*
 *		  mais attention de ne pas toucher les côté ou le snake lui-même. 			*

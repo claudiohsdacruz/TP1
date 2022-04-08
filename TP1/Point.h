@@ -1,3 +1,10 @@
+/****************************************************************************************
+* Auteur	: Claudio Cruz et Ramin Amiri					 							*
+* Nom		: point.h																	*
+* Date		: 08 avril 2022																*
+* Description	: L'objet Point. Élément de base pour la constrution d'autres objets  	*
+****************************************************************************************/
+
 #pragma once
 
 class Point

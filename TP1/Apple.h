@@ -1,8 +1,8 @@
 /****************************************************************************************
 * Auteur	: Claudio Cruz et Ramin Amiri					 							*
 * Nom		: apple.h																	*
-* Date		: 03 avril 2022																*
-* Description	: L'objet apple implémenté avec un tableau primitif dans le jeu snake  	*
+* Date		: 08 avril 2022																*
+* Description	: L'objet Aapple implémenté avec un tableau primitif dans le jeu snake  	*
 ****************************************************************************************/
 
 #pragma once
