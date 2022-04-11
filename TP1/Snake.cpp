@@ -143,7 +143,7 @@ void Snake::eat(int dir)
 // Affiche le serpent sur le tableau du jeu
 void Snake::draw(std::ostream& sortie) const
 {
-	for (int i = 0; i < _size + 1; i++)
+	for (int i = 0; i < _size; i++)
 	{
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), _snake[i].getColor());
 		gotoxy(_snake[i].getX(), _snake[i].getY());

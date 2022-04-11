@@ -49,13 +49,13 @@ void Game::initialize()
 	_lose = false;
 	_dir = 0;
 	_cptLive = 3;
-	_snake = Snake();
-	_apple = Apple(randPosition().getX(), randPosition().getY());
-	_plateau = Retangle(0, 0, _width, _height);
 
+	_plateau = Retangle(0, 0, _width, _height);
 	_plateau.draw(cout);
+	this->createApple();
 	_apple.draw(cout);
-	_snake.initialize(_snake.getHeadPosition().getX(), _snake.getHeadPosition().getY());
+	
+	_snake.initialize(20,10);
 	_snake.draw(cout);
 	this->printScore(cout);
 	this->printLive(cout);
@@ -73,10 +73,10 @@ Point Game::randPosition() const
 // Génére et affiche une pomme sur le tableau
 void Game::createApple()
 {
-	Point a = randPosition();
+	Point a;
 	do
 	{
-		Point a = randPosition();
+		a = randPosition();
 		_apple.setPosition(a.getX(), a.getY());
 	} while (_snake.ifCollision(a)); // verifie se la position de la pomme est genere sur un serpent
 	_apple.draw(std::cout);
@@ -95,7 +95,6 @@ void Game::play()
 		Point a = _apple.getPoint(); //Prend la position de la pomme
 		Point newPosition;
 		
-		this->printScore(cout); //Affiche le score
 		do
 		{	
 			this->inputKey(); //Saisit la touche
@@ -141,7 +140,6 @@ void Game::play()
 				Sleep(50 * _speed); //Augment la vitesse si le score est plus grande que 10
 			}
 
-			
 		}
 	}
 
