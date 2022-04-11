@@ -76,6 +76,7 @@ void Game::createApple()
 	Point a = randPosition();
 	do
 	{
+		Point a = randPosition();
 		_apple.setPosition(a.getX(), a.getY());
 	} while (_snake.ifCollision(a)); // verifie se la position de la pomme est genere sur un serpent
 	_apple.draw(std::cout);
