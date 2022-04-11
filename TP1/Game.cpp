@@ -74,7 +74,10 @@ Point Game::randPosition() const
 void Game::createApple()
 {
 	Point a = randPosition();
-	_apple.setPosition(a.getX(), a.getY());
+	do
+	{
+		_apple.setPosition(a.getX(), a.getY());
+	} while (_snake.ifCollision(a)); // verifie se la position de la pomme est genere sur un serpent
 	_apple.draw(std::cout);
 }
 
@@ -89,12 +92,14 @@ void Game::play()
 		
 		Point p = _snake.getHeadPosition(); //Prend la position de la tete du serpent
 		Point a = _apple.getPoint(); //Prend la position de la pomme
+		Point newPosition;
 		
 		this->printScore(cout); //Affiche le score
 		do
-		{
+		{	
 			this->inputKey(); //Saisit la touche
-		} while (!this->canMove(p));
+			newPosition = _snake.newPosition(_dir);
+		} while (!this->canMove(newPosition));
 		
 		if (_dir != 0)
 		{
@@ -175,8 +180,11 @@ void Game::inputKey() {
 bool Game::canMove(const Point& p) const
 {
 	bool move = true;
-	
-	if (p == _snake[1])
+	int px = p.getX();
+	int sx = _snake.getPosition(1).getX();
+	int py = p.getY();
+	int sy = _snake.getPosition(1).getY();
+	if (px == sx && py == sy)
 	{
 		move = false;
 	}

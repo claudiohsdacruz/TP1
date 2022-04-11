@@ -18,7 +18,7 @@ using namespace std;
 Snake::Snake()
 {
 	_snake[0] = Point(20, 10);
-	_size = 6;
+	_size = 7;
 }
 
 // Constructeur avec les parâmetres de position
@@ -42,6 +42,7 @@ void Snake::initialize(int x, int y)
 	{
 		_snake[i] = Point(x - i, y);
 	}
+	_snake[_size -1].setColor(0);
 }
 
 // Retourne la position de la tête du serpent
@@ -135,7 +136,8 @@ void Snake::eat(int dir)
 	{
 		_size++;
 	}
-
+	Beep(300, 100); // Sonne quand un serpent mange une pomme
+	
 }
 
 // Affiche le serpent sur le tableau du jeu
